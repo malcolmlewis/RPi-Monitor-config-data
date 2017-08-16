@@ -1,0 +1,7 @@
+# SuSEfirewall2 service definition
+## Name: RPi-Monitor
+## Description: Self monitoring application designed to run on a Raspberry Pi
+
+# space separated list of allowed TCP ports
+TCP="8888"
+
