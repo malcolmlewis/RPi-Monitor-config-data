@@ -37,4 +37,3 @@ install:
 	mkdir -p $(DESTDIR)$(DATADIR)/rpimonitor/web/img
 	cp -a SUSE/*.png $(DESTDIR)$(DATADIR)/rpimonitor/web/img/
 	cp -a openSUSE/*.png $(DESTDIR)$(DATADIR)/rpimonitor/web/img/
-	cp -a common/favicon.png $(DESTDIR)$(DATADIR)/rpimonitor/web/img/favicon.png
