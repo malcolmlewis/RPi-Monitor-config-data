@@ -27,7 +27,11 @@ if [ $MY_DEBUG == 1 ]; then
    /usr/bin/echo "Total packages installed is $MY_PACKAGES"
    /usr/bin/echo "Total patterns installed is $MY_PATTERNS"
    /usr/bin/echo "Total patches installed is $MY_PATCHES"
-   # Check if less than zero and set to zero because no patches have been installed
+   # Check and set to zero if no patterns or patches have been installed
+   if [[ $MY_PATTERNS -lt 2 ]]; then
+      echo "No patterns installed?"
+      MY_PATTERNS=0
+   fi
    if [[ $MY_PATCHES -lt 2 ]]; then
       echo "No patches installed?"
       MY_PATCHES=0
@@ -38,11 +42,14 @@ if [ $MY_DEBUG == 1 ]; then
    /usr/bin/echo "Total @System packages installed is $MY_SYSTEM"
 else
    /usr/bin/echo "Packages:$MY_PACKAGES" > /var/lib/rpimonitor/updatestatus.txt
-   /usr/bin/echo "Patterns:$MY_PATTERNS" >> /var/lib/rpimonitor/updatestatus.txt
-   # Check if less than zero and set to zero because no patches have been installed
+   # Check and set to zero if no patterns or patches have been installed
+   if [[ $MY_PATTERNS -lt 2 ]]; then
+      MY_PATTERNS=0
+   fi
    if [[ $MY_PATCHES -lt 2 ]]; then
       MY_PATCHES=0
    fi
+   /usr/bin/echo "Patterns:$MY_PATTERNS" >> /var/lib/rpimonitor/updatestatus.txt
    /usr/bin/echo "Patches:$MY_PATCHES" >> /var/lib/rpimonitor/updatestatus.txt
    /usr/bin/echo "Installed:$MY_INSTALLED" >> /var/lib/rpimonitor/updatestatus.txt
    MY_SYSTEM=$(($MY_INSTALLED-($MY_PACKAGES+$MY_PATTERNS+$MY_PATCHES)))
