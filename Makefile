@@ -33,6 +33,8 @@ install:
 	install -Dm0755 common/SUSE_rpimonitor_crond $(DESTDIR)$(SYSCONFDIR)/cron.daily/rpimonitor
 	# Install firewall service definition
 	install -Dm0644 common/SuSEfirewall2.RPi-Monitor $(DESTDIR)$(SYSCONFIGDIR)/SuSEfirewall2.d/services/RPi-Monitor
+	# Install zypper update script
+	install -Dm0755 common/check_zypper.pl $(DESTDIR)$(DATADIR)/rpimonitor/scripts/check_zypper.pl
 	# Install SUSE and openSUSE png's
 	mkdir -p $(DESTDIR)$(DATADIR)/rpimonitor/web/img
 	cp -a SUSE/*.png $(DESTDIR)$(DATADIR)/rpimonitor/web/img/

@@ -16,11 +16,14 @@
    the default port 4200. Access via YaST Security and Users, then under allowed services select
    from the dropdown list and save.
 
-### Daily cronjob for packages, patterns and patches installed.
+### Daily cronjob for packages, patterns and patches installed and if updates are available.
 
 1. The script rpimonitor (/etc/cron.daily/rpimonitor) has been added to run a daily check of
    installed files via zypper. If the magnifier glass is visible in the webpage output, check
    this to show @System packages installed.
+
+2. The script /usr/share/rpimonitor/scripts/check_zypper.pl from the nagios zypper plugin package
+   has been added to check if updates available. See https://en.opensuse.org/Nagios-plugins-zypper
 
 ### Include files (/etc/rpimonitor/template)
 
