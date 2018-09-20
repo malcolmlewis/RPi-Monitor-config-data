@@ -34,8 +34,12 @@ install:
 	install -Dm0755 common/SUSE_rpimonitor_zypper.sh $(DESTDIR)$(DATADIR)/rpimonitor/web/scripts/rpimonitor_zypper.sh
 	install -Dm0755 common/SUSE_rpimonitor_zypper.service $(DESTDIR)$(UNITDIR)/rpimonitor-zypper.service
 	install -Dm0755 common/SUSE_rpimonitor_zypper.timer $(DESTDIR)$(UNITDIR)/rpimonitor-zypper.timer
-	# Install firewall service definition
-	install -Dm0644 common/SuSEfirewall2.RPi-Monitor $(DESTDIR)$(SYSCONFIGDIR)/firewalld/services/RPi-Monitor
+	mkdir -p $(DESTDIR)$(SBINDIR)
+	ln -s $(SBINDIR)/service $(DESTDIR)$(SBINDIR)/rcrpimonitor-service
+	# FIXME Install firewall service definition
+	# mkdir -p $(DESTDIR)$(SYSCONFDIR)/firewalld/services
+	# install -Dm0644 common/SuSEfirewall2.RPi-Monitor $(DESTDIR)$(SYSCONFDIR)/firewalld/services/RPi-Monitor
+	#
 	# Install zypper update script
 	install -Dm0755 common/check_zypper.pl $(DESTDIR)$(DATADIR)/rpimonitor/scripts/check_zypper.pl
 	# Install SUSE and openSUSE png's
