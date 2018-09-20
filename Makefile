@@ -10,7 +10,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
 # Lesser General Public License for more details.
 #
-# Copyright (C) 2017 Malcolm Lewis <malcolmlewis@opensuse.org>
+# Copyright (C) 2017-2018 Malcolm Lewis <malcolmlewis@opensuse.org>
 
 PREFIX?=/usr
 BINDIR?=$(PREFIX)/bin
@@ -29,13 +29,20 @@ install:
 	mkdir -p $(DESTDIR)$(SYSCONFDIR)/rpimonitor/template
 	cp -a SUSE/*.conf $(DESTDIR)$(SYSCONFDIR)/rpimonitor/template/
 	cp -a openSUSE/*.conf $(DESTDIR)$(SYSCONFDIR)/rpimonitor/template/
-	# Install cronjob to analyze installed packages, patches and patterns
-	install -Dm0755 common/SUSE_rpimonitor_crond $(DESTDIR)$(SYSCONFDIR)/cron.daily/rpimonitor
+	# Install systemd timer, service and script to analyze installed packages, patches and patterns
+	mkdir -p $(DESTDIR)$(DATADIR)/rpimonitor/web/scripts
+	install -Dm0755 common/SUSE_rpimonitor_zypper.sh $(DESTDIR)$(DATADIR)/rpimonitor/web/scripts/rpimonitor_zypper.sh
+	install -Dm0755 common/SUSE_rpimonitor_zypper.service $(DESTDIR)$(UNITDIR)/rpimonitor-zypper.service
+	install -Dm0755 common/SUSE_rpimonitor_zypper.timer $(DESTDIR)$(UNITDIR)/rpimonitor-zypper.timer
 	# Install firewall service definition
-	install -Dm0644 common/SuSEfirewall2.RPi-Monitor $(DESTDIR)$(SYSCONFIGDIR)/SuSEfirewall2.d/services/RPi-Monitor
+	install -Dm0644 common/SuSEfirewall2.RPi-Monitor $(DESTDIR)$(SYSCONFIGDIR)/firewalld/services/RPi-Monitor
 	# Install zypper update script
 	install -Dm0755 common/check_zypper.pl $(DESTDIR)$(DATADIR)/rpimonitor/scripts/check_zypper.pl
 	# Install SUSE and openSUSE png's
 	mkdir -p $(DESTDIR)$(DATADIR)/rpimonitor/web/img
 	cp -a SUSE/*.png $(DESTDIR)$(DATADIR)/rpimonitor/web/img/
 	cp -a openSUSE/*.png $(DESTDIR)$(DATADIR)/rpimonitor/web/img/
+	# Install pihole helper, conf and icon
+	install -Dm0755 common/SUSE_rpimonitor-pihole.sh $(DESTDIR)$(DATADIR)/rpimonitor/web/scripts/rpimonitor-pihole.sh
+	install -Dm0644 common/openSUSE_pihole.conf $(SYSCONFDIR)/rpimonitor/template/openSUSE_pihole.conf
+	install -Dm0644 common/pihole.png $(DESTDIR)$(DATADIR)/rpimonitor/web/img/pihole.png

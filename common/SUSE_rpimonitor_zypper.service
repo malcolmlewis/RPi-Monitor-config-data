@@ -1,0 +1,13 @@
+# /usr/lib/systemd/system/rpimonitor-zypper.service
+#
+# Copyright (c) 2018 Malcolm J Lewis <malcolmlewis@opensuse.org>
+#
+
+[Unit]
+Description=A daily check for zypper updates
+ConditionACPower=true
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/share/rpimonitor/scripts/rpimonitor-zypper.sh

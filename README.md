@@ -1,8 +1,8 @@
 ## Customization of RPi-Monitor configuration for SUSE SLES, openSUSE Leap and openSUSE Tumbleweed.
 
-### Opening SuSEfirewall2 port
+### Opening firewalld port
 
-1. If running SuSEfirewall2 the RPi-Monitor-config-data package includes a service definition
+1. If running firewalld the RPi-Monitor-config-data package includes a service definition
    file to open the default port 8888. Access via YaST Security and Users, then under allowed
    services select from the dropdown list and save.
 
@@ -16,14 +16,18 @@
    the default port 4200. Access via YaST Security and Users, then under allowed services select
    from the dropdown list and save.
 
-### Daily cronjob for packages, patterns and patches installed and if updates are available.
+### Daily systemd timer for packages, patterns and patches installed and if updates are available.
 
-1. The script rpimonitor (/etc/cron.daily/rpimonitor) has been added to run a daily check of
-   installed files via zypper. If the magnifier glass is visible in the webpage output, check
-   this to show @System packages installed.
+1. The script rpimonitor (/usr/share/rpimonitor/scripts/rpimonitor) and associated systemd timer
+   and service has been added to run a daily check of installed files via zypper. If the magnifier
+   glass is visible in the webpage output, check this to show @System packages installed.
 
 2. The script /usr/share/rpimonitor/scripts/check_zypper.pl from the nagios zypper plugin package
    has been added to check if updates available. See https://en.opensuse.org/Nagios-plugins-zypper
+
+3. To see the status of the systemd timer service, run the command;
+
+   `systemctl status rpimontor-zypper.timer`
 
 ### Include files (/etc/rpimonitor/template)
 
@@ -61,6 +65,7 @@
    * include=/etc/rpimonitor/template/openSUSE.conf
    * include=/etc/rpimonitor/template/openSUSE_cpu.conf
    * include=/etc/rpimonitor/template/openSUSE_network.conf
+   * include=/etc/rpimonitor/template/openSUSE_pihole.conf
    * include=/etc/rpimonitor/template/openSUSE_sdcard.conf
    * include=/etc/rpimonitor/template/openSUSE_temperature.conf
    * include=/etc/rpimonitor/template/openSUSE_uptime.conf
@@ -110,6 +115,13 @@
    * Convert to Height 64 and rename to SUSE-icon-color.png
 
    `convert -resize x64 logo_orig/suse-logomark/suse_icon_screen/SUSE_icon_color.png SUSE-icon-color.png`
+
+5. Pihole: https://github.com/pi-hole/pi-hole
+   * https://raw.githubusercontent.com/pi-hole/AdminLTE/master/img/favicon.png
+   * Convert to Height 64 and png
+   * Rename to pihole.png
+
+   `convert -resize x64 favicon.png pihole.png`
 
 ### Contacting the Author
 

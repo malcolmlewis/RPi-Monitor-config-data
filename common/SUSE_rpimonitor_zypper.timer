@@ -1,0 +1,17 @@
+# /usr/lib/systemd/system/rpimonitor-zypper.timer
+#
+# Copyright (c) 2018 Malcolm J Lewis <malcolmlewis@opensuse.org>
+#
+
+[Unit]
+Description=A daily check for zypper updates
+After=network.target local-fs.target
+
+[Timer]
+OnCalendar=daily
+AccuracySec=1m
+RandomizedDelaySec=2h
+Persistent=true
+
+[Install]
+WantedBy=timers.target

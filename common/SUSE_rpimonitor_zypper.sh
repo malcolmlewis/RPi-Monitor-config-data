@@ -10,7 +10,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
 # Lesser General Public License for more details.
 #
-# Copyright (C) 2017 Malcolm Lewis <malcolmlewis@opensuse.org>
+# Copyright (C) 2017-2018 Malcolm Lewis <malcolmlewis@opensuse.org>
 
 MY_DEBUG=0
 if [ $MY_DEBUG == 1 ]; then
