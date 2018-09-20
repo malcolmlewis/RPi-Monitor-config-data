@@ -44,5 +44,5 @@ install:
 	cp -a openSUSE/*.png $(DESTDIR)$(DATADIR)/rpimonitor/web/img/
 	# Install pihole helper, conf and icon
 	install -Dm0755 common/SUSE_rpimonitor-pihole.sh $(DESTDIR)$(DATADIR)/rpimonitor/web/scripts/rpimonitor-pihole.sh
-	install -Dm0644 common/openSUSE_pihole.conf $(SYSCONFDIR)/rpimonitor/template/openSUSE_pihole.conf
+	install -Dm0644 common/openSUSE_pihole.conf $(DESTDIR)$(SYSCONFDIR)/rpimonitor/template/openSUSE_pihole.conf
 	install -Dm0644 common/pihole.png $(DESTDIR)$(DATADIR)/rpimonitor/web/img/pihole.png
