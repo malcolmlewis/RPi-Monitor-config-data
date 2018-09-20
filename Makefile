@@ -32,8 +32,8 @@ install:
 	# Install systemd timer, service and script to analyze installed packages, patches and patterns
 	mkdir -p $(DESTDIR)$(DATADIR)/rpimonitor/web/scripts
 	install -Dm0755 common/SUSE_rpimonitor_zypper.sh $(DESTDIR)$(DATADIR)/rpimonitor/web/scripts/rpimonitor_zypper.sh
-	install -Dm0755 common/SUSE_rpimonitor_zypper.service $(DESTDIR)$(UNITDIR)/rpimonitor-zypper.service
-	install -Dm0755 common/SUSE_rpimonitor_zypper.timer $(DESTDIR)$(UNITDIR)/rpimonitor-zypper.timer
+	install -Dm0644 common/SUSE_rpimonitor_zypper.service $(DESTDIR)$(UNITDIR)/rpimonitor-zypper.service
+	install -Dm0644 common/SUSE_rpimonitor_zypper.timer $(DESTDIR)$(UNITDIR)/rpimonitor-zypper.timer
 	mkdir -p $(DESTDIR)$(SBINDIR)
 	ln -s $(SBINDIR)/service $(DESTDIR)$(SBINDIR)/rcrpimonitor-service
 	# FIXME Install firewall service definition
@@ -46,7 +46,6 @@ install:
 	mkdir -p $(DESTDIR)$(DATADIR)/rpimonitor/web/img
 	cp -a SUSE/*.png $(DESTDIR)$(DATADIR)/rpimonitor/web/img/
 	cp -a openSUSE/*.png $(DESTDIR)$(DATADIR)/rpimonitor/web/img/
-	# Install pihole helper, conf and icon
+	# Install pihole helper and icon
 	install -Dm0755 common/SUSE_rpimonitor-pihole.sh $(DESTDIR)$(DATADIR)/rpimonitor/web/scripts/rpimonitor-pihole.sh
-	install -Dm0644 common/openSUSE_pihole.conf $(DESTDIR)$(SYSCONFDIR)/rpimonitor/template/openSUSE_pihole.conf
 	install -Dm0644 common/pihole.png $(DESTDIR)$(DATADIR)/rpimonitor/web/img/pihole.png
