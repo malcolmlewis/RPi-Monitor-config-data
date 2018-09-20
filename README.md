@@ -1,11 +1,5 @@
 ## Customization of RPi-Monitor configuration for SUSE SLES, openSUSE Leap and openSUSE Tumbleweed.
 
-### Opening firewalld port
-
-1. If running firewalld the RPi-Monitor-config-data package includes a service definition
-   file to open the default port 8888. Access via YaST Security and Users, then under allowed
-   services select from the dropdown list and save.
-
 ### Daemon manual configuration for shellinabox (/etc/rpimonitor/daemon.conf)
 
 1. You need to configure shellinabox and add hostname/ip address at daemon.shellinabox=https://
