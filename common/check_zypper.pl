@@ -93,9 +93,9 @@ our %REVERSE = (
     0 => 'OK',
 );
 our %supported_release = (
-    'openSUSE'   => [ '42.1', '42.2', '42.3' ],
+    'openSUSE'   => [ '42.1', '42.2', '42.3', '15.0' ],
     'SLE'        => [ '10.4', '11.4', '12.2', '12.3' ],
-    'Tumbleweed' => ['2017*'],
+    'Tumbleweed' => ['2017*', '2018*' ],
 );
 $opt_w = 'recommended,optional,unsupported,local_package';
 $opt_c = 'security';
