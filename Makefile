@@ -35,7 +35,7 @@ install:
 	install -Dm0644 common/SUSE_rpimonitor_zypper.service $(DESTDIR)$(UNITDIR)/rpimonitor-zypper.service
 	install -Dm0644 common/SUSE_rpimonitor_zypper.timer $(DESTDIR)$(UNITDIR)/rpimonitor-zypper.timer
 	mkdir -p $(DESTDIR)$(SBINDIR)
-	ln -s $(SBINDIR)/service $(DESTDIR)$(SBINDIR)/rcrpimonitor-service
+	ln -s $(SBINDIR)/service $(DESTDIR)$(SBINDIR)/rcrpimonitor-zypper
 	# FIXME Install firewall service definition
 	# mkdir -p $(DESTDIR)$(SYSCONFDIR)/firewalld/services
 	# install -Dm0644 common/SuSEfirewall2.RPi-Monitor $(DESTDIR)$(SYSCONFDIR)/firewalld/services/RPi-Monitor
