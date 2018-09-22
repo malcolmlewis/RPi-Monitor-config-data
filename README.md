@@ -3,18 +3,17 @@
 ### Daemon manual configuration for shellinabox (/etc/rpimonitor/daemon.conf)
 
 1. You need to configure shellinabox and add hostname/ip address at daemon.shellinabox=https://
+
 2. Since it's a self signed certificate you will need to add an exception in your web browser of
    choice, for example in Firefox: Preferences -> Advanced -> View Certificates and Add Exception
-   button and enter the Url.
-3. If running SuSEfirewall2 the shellinabox package includes a service definition file to the open
-   the default port 4200. Access via YaST Security and Users, then under allowed services select
-   from the dropdown list and save.
+   button and enter the Url (https://(fqdn or ip address):4200/).
 
-### Daily systemd timer for packages, patterns and patches installed and if updates are available.
+3. If running a firewall the port needs to be open (default: 4200) for remote access.
 
-1. The script rpimonitor (/usr/share/rpimonitor/scripts/rpimonitor) and associated systemd timer
-   and service has been added to run a daily check of installed files via zypper. If the magnifier
-   glass is visible in the webpage output, check this to show @System packages installed.
+### Daily systemd timer for packages, patterns, patches installed and if updates are available.
+
+1. The script /usr/share/rpimonitor/scripts/rpimonitor-zypper.sh and associated systemd timer
+   and service has been added to run a daily check of installed files via zypper.
 
 2. The script /usr/share/rpimonitor/scripts/check_zypper.pl from the nagios zypper plugin package
    has been added to check if updates available. See https://en.opensuse.org/Nagios-plugins-zypper
@@ -22,6 +21,20 @@
 3. To see the status of the systemd timer service, run the command;
 
    `systemctl status rpimontor-zypper.timer`
+
+### Pihole integration.
+
+1. The script /usr/share/rpimonitor/rpimonitor-pihole.sh (and softlink in /usr/bin) uses the
+   telnet-api to access pihole-FTL socket for relevant information to populate the RPi-Monitor
+   status page. It can also be run from the command line eg;
+
+   `rpimonitor-pihole.sh`
+   `Usage: /usr/bin/rpimonitor-pihole.sh <stats,top-domains,top-ads,top-clients,recentBlocked>`
+
+   (Ref: https://docs.pi-hole.net/ftldns/telnet-api/)
+
+2. To add pihole status you need to edit the data.conf and remove the # from;
+   * include=/etc/rpimonitor/template/openSUSE_pihole.conf
 
 ### Include files (/etc/rpimonitor/template)
 
@@ -48,6 +61,7 @@
    * include=/etc/rpimonitor/template/SUSE.conf
    * include=/etc/rpimonitor/template/SUSEmemory.conf
    * include=/etc/rpimonitor/template/SUSE_network.conf
+   * include=/etc/rpimonitor/template/SUSE_pihole.conf
    * include=/etc/rpimonitor/template/SUSE_sdcard_btrfs.conf
    * include=/etc/rpimonitor/template/SUSE_temperature.conf
    * include=/etc/rpimonitor/template/SUSE_sdcard_btrfs.conf
