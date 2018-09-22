@@ -29,6 +29,7 @@
    status page. It can also be run from the command line eg;
 
    `rpimonitor-pihole.sh`
+
    Usage: /usr/bin/rpimonitor-pihole.sh <stats,top-domains,top-ads,top-clients,recentBlocked>
 
    (Ref: https://docs.pi-hole.net/ftldns/telnet-api/)
