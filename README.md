@@ -37,6 +37,13 @@
 2. To add pihole status you need to edit the data.conf and remove the # from;
    * include=/etc/rpimonitor/template/openSUSE_pihole.conf
 
+3. To record statistics for the last 24 hours, you need to change the default 365 days to
+   1 day by edditing the following file;
+
+   * /etc/pihole/pihole-FTL.conf
+
+   Then change/add the entry: MAXDBDAYS=1
+
 ### Include files (/etc/rpimonitor/template)
 
 1. Main configuration file is SUSE.conf or openSUSE.conf, this file needs to be a softlink to
